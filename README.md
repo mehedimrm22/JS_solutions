@@ -1,1 +1,1 @@
-# Js_solutions - Answers
+# JS_solutions - Answers
