@@ -4,11 +4,6 @@
 
 I want to be a really good developer
 
-### Third headline
-
-- dhbfgknadfmvaosklfmvlav
-- kasdfkj
-
 #### Fourth Headline
 
 1. gkjanfdvakjaf
@@ -21,6 +16,9 @@ I want to be a really good developer
 let a = "Mahmudur";
 //some comment
 ```
+
+:fox_face:
+:unicorn:
 
 this text will be **bold** and this is _cursive_
 
