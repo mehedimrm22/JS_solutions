@@ -2,11 +2,13 @@
 
 function evenNumbers() {
 
-    let count = 0, numbers;
-    for (let i = 0; i <= 4; i++) {
-        count = +prompt('Please enter 20 numbers');
-        console.log(inputs);
+    let count = 0;
+    for (let i = 0; i < 4; i++) {
+        let input = +prompt('Please enter 20 numbers');
+        if (input % 2 === 0) {
+            count++;
+        }
     }
-
+    console.log(`Even number: ${count}`);
 }
 evenNumbers();
