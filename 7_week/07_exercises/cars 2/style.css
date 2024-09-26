@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    background: #d0f8dd;
+    height: 100vh;
+    color: #333;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+}
+
+header {
+    margin: 80px 0 40px 0;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.search-section p {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+input {
+    font-size: 12px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    box-shadow: inset 0px 0px 4px 1px #00c33f;
+    transition: all 0.3s ease-in-out;
+}
+
+button {
+    margin: 5px 5px 0 0;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #00c33f;
+    transition: all 0.5s ease-in-out;
+}
+
+button:hover {
+    border: 1px solid #00c33f;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.form-container {
+    width: 50%;
+}
+
+.form-container form div,
+.search-section div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-container form div label,
+.search-section div label {
+    width: 150px;
+    text-align: left;
+}
+
+.form-container form div input {
+    flex: 1;
+}
+
+
+
+table,
+th,
+td {
+    font-size: 12px;
+    border: 1px solid #333;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px 30px;
+}
+
+#error-message {
+    color: rgb(219, 21, 21);
+    margin-bottom: 20px;
+}
