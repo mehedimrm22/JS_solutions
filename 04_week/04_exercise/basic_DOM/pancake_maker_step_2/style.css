@@ -131,6 +131,10 @@ body {
     font-size: 1.4rem;
   }
 
+  .body {
+    background-color: black;
+  }
+
   .image-container img {
     border-radius: 20px;
   }

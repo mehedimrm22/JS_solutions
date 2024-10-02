@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overscroll-behavior: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: rgb(139, 242, 172);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header,
+section,
+footer {
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  background-color: transparent;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+.navFixed {
+  background-color: #7d7dff;
+  transition: all 0.5s ease-in-out;
+  height: 80px;
+}
+
+
+#hero,
+#projects,
+#about {
+  height: 55vh;
+  scroll-margin-top: 10rem;
+}
+
+#hero,
+section:first-child {
+  background: url(img1.jpg) no-repeat fixed center /cover;
+  height: 100vh;
+  padding-top: 150px;
+}
+
+section:nth-child(2) {
+  background-color: rgb(212, 79, 103);
+}
+
+section:last-child {
+  background-color: rgb(201, 130, 86);
+}
+
+p {
+  line-height: 1.5;
+}
+
+footer button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}

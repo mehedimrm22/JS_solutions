@@ -75,7 +75,6 @@ const addCar = (e) => {
     return true;
   }
 
-
   const newCar = new Car(licNum, carMaker, carModel, carYear, carOwner, carPrice, carColor);
   cars.push(newCar);
   displayTable();
@@ -84,27 +83,36 @@ const addCar = (e) => {
 };
 
 const displayTable = () => {
+  const tableContainer = document.querySelector('.table-container');
   const table = document.querySelector('#car-table');
   table.innerHTML = table.rows[0].innerHTML;
 
   cars.forEach(car => {
     const row = table.insertRow(-1);
 
-
     Object.values(car).forEach((text) => {
       const cell = row.insertCell(-1);
       cell.textContent = text;
     });
   });
+  tableContainer.style.display = cars.length > 0 ? 'block' : 'none';
 };
 
 const searchCar = (e) => {
   e.preventDefault();
 
+  if (!searchForm.value) {
+    searchResult.textContent = 'Please enter a license number to search.';
+    return;
+  }
+
+  let foundCar = false;
   for (let i = 0; i < cars.length; i++) {
     if (cars[i].licNum === searchForm.value) {
       const discountedPrice = cars[i].getDiscountedPrice();
       searchResult.textContent = `License number: ${cars[i].licNum} is ${cars[i].carMaker} ${cars[i].carModel} and it belongs to ${cars[i].carOwner}. Original Price: €${cars[i].carPrice}${discountedPrice ? `  and Discounted Price: €${discountedPrice}.` : ''}`;
+      foundCar = true;
+      break;
     }
     else {
       searchResult.textContent = 'There is no car with that license plate added to the system. Try again?';
@@ -114,4 +122,3 @@ const searchCar = (e) => {
 
 addCarForm.addEventListener('submit', addCar);
 searchCarBtn.addEventListener('click', searchCar);
-
