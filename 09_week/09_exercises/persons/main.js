@@ -14,3 +14,5 @@ async function cats() {
     }
 
 }
+
+cats();

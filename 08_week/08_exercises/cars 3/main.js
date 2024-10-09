@@ -56,6 +56,16 @@ const validateCarData = (licNum, carYear, carPrice) => {
   }
 };
 
+const displayMessage = (message, type = "success") => {
+  const messageElement = document.querySelector("#message");
+  messageElement.textContent = message;
+  messageElement.className = type;
+  setTimeout(() => {
+    messageElement.textContent = "";
+    messageElement.className = "";
+  }, 1500);
+};
+
 const addCar = (e) => {
   e.preventDefault();
 
@@ -67,8 +77,6 @@ const addCar = (e) => {
   const carPrice = parseFloat(document.querySelector('#car-price').value);
   const carColor = document.querySelector('#car-color').value;
 
-
-
   const isValid = validateCarData(licNum, carYear, carPrice);
   if (!isValid) {
     return true;
@@ -76,26 +84,68 @@ const addCar = (e) => {
 
   const newCar = new Car(licNum, carMaker, carModel, carYear, carOwner, carPrice, carColor);
   cars.push(newCar);
+  localStorage.setItem('cars', JSON.stringify(cars));
   displayTable();
+  displayMessage("Car added successfully!");
 
   errorMessage.textContent = '';
 };
 
+const loadCarsFromStorage = () => {
+  const storedCars = localStorage.getItem('cars');
+  if (storedCars) {
+    const parsedCars = JSON.parse(storedCars);
+
+    // Convert plain objects back to Car instances
+    parsedCars.forEach(carData => {
+      const car = new Car(
+        carData.licNum,
+        carData.carMaker,
+        carData.carModel,
+        carData.carYear,
+        carData.carOwner,
+        carData.carPrice,
+        carData.carColor
+      );
+      cars.push(car);
+    });
+  }
+  displayTable();
+};
+
+
 const displayTable = () => {
   const tableContainer = document.querySelector('.table-container');
   const table = document.querySelector('#car-table');
+
   table.innerHTML = table.rows[0].innerHTML;
 
-  cars.forEach(car => {
+  cars.forEach((car, index) => {
     const row = table.insertRow(-1);
 
-    Object.values(car).forEach((text) => {
+    const carDetails = [car.licNum, car.carMaker, car.carModel, car.carYear, car.carOwner, car.carPrice.toFixed(2) + "€", car.carColor];
+    carDetails.forEach(detail => {
       const cell = row.insertCell(-1);
-      cell.textContent = text;
+      cell.textContent = detail;
     });
+
+    const discountedPrice = car.getDiscountedPrice() > 0
+      ? `${car.getDiscountedPrice().toFixed(2)}€`
+      : "No Discount";
+    const discountCell = row.insertCell(-1);
+    discountCell.textContent = discountedPrice;
+
+    const deleteCell = row.insertCell(-1);
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete");
+    deleteButton.addEventListener("click", () => deleteCar(index));
+    deleteCell.appendChild(deleteButton);
   });
   tableContainer.style.display = cars.length > 0 ? 'block' : 'none';
 };
+
+
 
 const searchCar = (e) => {
   e.preventDefault();
@@ -109,7 +159,18 @@ const searchCar = (e) => {
   for (let i = 0; i < cars.length; i++) {
     if (cars[i].licNum === searchForm.value) {
       const discountedPrice = cars[i].getDiscountedPrice();
-      searchResult.textContent = `License number: ${cars[i].licNum} is ${cars[i].carMaker} ${cars[i].carModel} and it belongs to ${cars[i].carOwner}. Original Price: €${cars[i].carPrice}${discountedPrice ? `  and Discounted Price: €${discountedPrice}.` : ''}`;
+
+      searchResult.innerHTML = `
+        <p>Maker: ${cars[i].carMaker}</p>
+        <p>Model: ${cars[i].carModel}</p>
+        <p>Owner: ${cars[i].carOwner}</p>
+        <p>Year: ${cars[i].carYear}</p>
+        <p>Original Price: $${cars[i].carPrice}</p>
+        <p>Discounted Price: ${discountedPrice}</p>
+        <p>Color: ${cars[i].carColor}</p>
+      `;
+
+
       foundCar = true;
       break;
     }
@@ -119,5 +180,15 @@ const searchCar = (e) => {
   }
 };
 
+
+
+const deleteCar = (index) => {
+  cars.splice(index, 1);
+  localStorage.setItem('cars', JSON.stringify(cars));
+  displayTable();
+  displayMessage("Car deleted successfully!");
+};
+
 addCarForm.addEventListener('submit', addCar);
 searchCarBtn.addEventListener('click', searchCar);
+window.addEventListener('DOMContentLoaded', loadCarsFromStorage);
