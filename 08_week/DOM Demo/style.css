@@ -14,6 +14,13 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 header,
 section,
 footer {
@@ -42,11 +49,17 @@ nav ul li {
   height: 80px;
 }
 
+.mobile-menu {
+  font-size: 16px;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  display: none;
+}
 
 #hero,
 #projects,
 #about {
-  height: 55vh;
   scroll-margin-top: 10rem;
 }
 
@@ -69,6 +82,40 @@ p {
   line-height: 1.5;
 }
 
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal {
+  background-color: aliceblue;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 5px;
+  position: relative;
+}
+
+.modal button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 1rem;
+  background-color: rgb(211, 63, 63);
+  cursor: pointer;
+}
+
+.visible {
+  display: none;
+}
+
 footer button {
   padding: 1rem 2rem;
   border: none;
@@ -76,4 +123,34 @@ footer button {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+}
+
+
+@media (max-width: 800px) {
+  .mobile-menu {
+    display: block;
+  }
+
+  header nav ul {
+    max-height: 0;
+    transition: visibility 0.5s ease-in-out, visibility 0s 0.5s;
+    /* Delay visibility change */
+  }
+
+  nav ul.responsive {
+    max-height: 500px;
+    background-color: #7d7dff;
+    color: #333;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 100%;
+    transition: opacity 0.5s ease-in-out, visibility 0s;
+    /* No delay for visible state */
+  }
+
+  ul.responsive li {
+    display: block;
+    margin: 2rem 1rem;
+  }
 }

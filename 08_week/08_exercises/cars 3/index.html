@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Cars Management</title>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <h1>Car Management</h1>
+      <div class="search-section">
+        <p>Search by License number</p>
+        <form class="mb20" id="search-form">
+          <div>
+            <label for="search-lic">License Number</label>
+            <input type="text" name="search-lic" id="search-lic" placeholder="ABC-123">
+          </div>
+          <button id="search-car">Search</button>
+        </form>
+        <p id="search-result"></p>
+      </div>
+    </header>
+
+    <div class="info-container">
+      <div class="table-container mb20">
+        <h2 class="mb20">Cars Database</h2>
+        <table id="car-table">
+          <thead>
+            <tr>
+              <th>License</th>
+              <th>Maker</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>Owner</th>
+              <th>Price</th>
+              <th>Colors</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="form-container">
+        <h2 class="mb20">Insert Car Information</h2>
+        <p id="error-message"></p>
+        <form id="car-form">
+
+          <div>
+            <label for="lic-number">License Number</label>
+            <input type="text" name="lic-number" id="lic-number" placeholder="ABC-123" required>
+          </div>
+
+          <div>
+            <label for="car-maker">Car Maker</label>
+            <input type="text" name="car-maker" id="car-maker" placeholder="Audi" required>
+          </div>
+
+          <div>
+            <label for="car-model">Car Model</label>
+            <input type="text" name="car-model" id="car-model" placeholder="A3" required>
+          </div>
+
+          <div>
+            <label for="car-year">Car Year</label>
+            <input type="number" name="car-year" id="car-year" placeholder="2021" required>
+          </div>
+
+          <div>
+            <label for="car-owner">Car Owner</label>
+            <input type="text" name="car-owner" id="car-owner" placeholder="John" required>
+          </div>
+
+          <div>
+            <label for="car-price">Car Price</label>
+            <input type="number" name="car-price" id="car-price" placeholder="10000" required>
+          </div>
+
+          <div>
+            <label for="car-color">Car Color</label>
+            <input type="text" name="car-color" id="car-color" placeholder="Black" required>
+          </div>
+
+          <button type="submit" id="add-car">Add Car</button>
+          <button type="reset">Reset</button>
+
+        </form>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
